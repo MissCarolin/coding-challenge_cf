@@ -31,6 +31,9 @@ h1, a {
   z-index: -1;
 }
 
+
+/* mobile optimisation */
+
 @media(max-width: 375px) {
   #results_program {
     display: grid;

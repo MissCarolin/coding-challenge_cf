@@ -67,7 +67,7 @@
             data.forEach((result) => {
         const dates = `
         <p class="next_date">${result.start_dates[0]}<p>
-        <div class="following_dates">${result.start_dates[0]}
+        <div class="following_dates">
         <p>${result.start_dates[1]}</p>
         <p>${result.start_dates[2]}</p>
         </div>`;
@@ -78,10 +78,42 @@
     });
       //(unfortunately it always wants to grab the result.slug locally so it doesn't work and therefore I can't display it in the frontend)
 
+
+      //This would have worked but it's not dynamic:
+
+    //--> const nextDates = document.querySelector("#start_dates")
+
+        /* fetch("https://private-e05942-courses22.apiary-mock.com/courses/voice-user-interface-design-with-amazon-alexa")
+        .then(response => response.json())
+        .then((data) => {
+          console.log(data.start_dates[0]);
+          const datesNew = `
+          <p class="next_date">Next start: ${data.start_dates[0]}<p>
+          `;
+          nextDates.insertAdjacentHTML("beforeend", datesNew);
+        }); */
+
      //---------------------------------------------------------------------
 
+     // get the geolocation from freegeoip API and (trying) to display the currency based on the location but somehow it doesn't display anything and I ran out of time
 
+    const resultsCurrency = document.querySelector("#currency")
 
+    fetch("http://api.ipstack.com/check?access_key=0fdea3fe2f04b92d23a95c806ae12a48")
+    .then(response => response.json())
+    .then((data) => {
+      // console.log(data.location.is_eu)
+
+      const location = data.location.is_eu
+
+        const currencyChoice = (location) => {
+          if (location === true) {
+          const euro = `<ul class="euro">eur</ul>`
+        } else {
+          const usd = `<ul class="usd">usd</ul>`
+        };
+       resultsCurrency.insertAdjacentHTML("beforeend", location);
+      };
+    });
   </script>
-
 </html>

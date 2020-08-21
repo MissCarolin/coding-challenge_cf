@@ -9,3 +9,12 @@ p {
 h1, a {
   padding: 0px;
 }
+
+#results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0px;
+}

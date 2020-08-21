@@ -20,6 +20,7 @@
         <div class="background_section_program">
         </div>
         <ul id="results_program"></ul>
+        <ul id="start_dates"></ul>
       </section>
     </div>
   </body>
@@ -48,7 +49,31 @@
 
     //---------------------------------------------------------------------
 
+  // get the startdates from the API and display them
 
+    const resultsNextDates = document.querySelector("#start_dates")
+
+    fetch("https://private-e05942-courses22.apiary-mock.com/courses")
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      data.forEach((result) => {
+
+        //chain the promises and add the dynamic result to the course API to
+        return fetch(`"https://private-e05942-courses22.apiary-mock.com/courses/${result.slug}"`)
+          .then(response => response.json())
+          .then((data) => {
+            console.log(data);
+            data.forEach((result) => {
+        const dates = `
+        <p class="next_date">${result.start_dates[0]}<p>
+        <p class="following_dates">${result.start_dates[1]}</p>
+        <p class="following_dates">${result.start_dates[2]}</p>`;
+        resultsNextDates.insertAdjacentHTML("beforeend", dates);
+          });
+        });
+      });
+    });
 
   </script>
 

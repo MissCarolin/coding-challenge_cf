@@ -11,14 +11,36 @@
         <div class="header_content">
           <h1 id="headline_career_landingpage">Build a career you love</h1>
             <h4 class="teaser_career_landingpage">Become a UX designer, UI designer, web developer, or data analyst from scratch</h4>
-          <a href="#" class="btn btn-programm">Find the right Programm for you</a>
+          <a href="#program" class="btn btn-programm">Find the right Programm for you</a>
         </div>
         <img src="https://images.careerfoundry.com/public/frontpages/homepage/header_hp_jaye_2-min.png" id="header_image">
       </header>
+      <section id="program">
+        <ul id="results_program"></ul>
+      </section>
     </div>
   </body>
-  <script>
+  <script> // I put the JS here because of the loading time
 
+    //---------------------------------------------------------------------
+
+    // get the courses from the API and display title and url for more Ifos (even though the urls aren't working anymore since i guess the courses already started)
+
+    const resultsProgram = document.querySelector("#results_program");
+
+    fetch("https://private-e05942-courses22.apiary-mock.com/courses")
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      data.forEach((result) => {
+        // console.log(result)
+        const course = `<div class="course-card">
+        <h1 class="course_title">${result.title}</h1>
+        <a href="${result.url}" class="btn_programm_details">View Program</a>
+        </div>`;
+        resultsProgram.insertAdjacentHTML("beforeend", course);
+      });
+    });
   </script>
 
 </html>

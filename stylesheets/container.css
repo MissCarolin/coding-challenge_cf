@@ -30,3 +30,23 @@ h1, a {
   right: 319px;
   z-index: -1;
 }
+
+@media(max-width: 375px) {
+  #results_program {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0px;
+  }
+  .background_section_program {
+    width: 909px;
+    height: 500px;
+    background: #d3d3d366;
+    position: absolute;
+    top: 679px;
+    right: 0px;
+    z-index: -1;
+  }
+}

@@ -59,7 +59,7 @@
       console.log(data);
       data.forEach((result) => {
 
-        //chain the promises and add the dynamic result to the course API to
+        //chain the promises and add the dynamic result to the course API to get the individual course infos from new API
         return fetch(`"https://private-e05942-courses22.apiary-mock.com/courses/${result.slug}"`)
           .then(response => response.json())
           .then((data) => {
@@ -67,13 +67,20 @@
             data.forEach((result) => {
         const dates = `
         <p class="next_date">${result.start_dates[0]}<p>
-        <p class="following_dates">${result.start_dates[1]}</p>
-        <p class="following_dates">${result.start_dates[2]}</p>`;
+        <div class="following_dates">${result.start_dates[0]}
+        <p>${result.start_dates[1]}</p>
+        <p>${result.start_dates[2]}</p>
+        </div>`;
         resultsNextDates.insertAdjacentHTML("beforeend", dates);
           });
         });
       });
     });
+      //(unfortunately it always wants to grab the result.slug locally so it doesn't work and therefore I can't display it in the frontend)
+
+     //---------------------------------------------------------------------
+
+
 
   </script>
 
